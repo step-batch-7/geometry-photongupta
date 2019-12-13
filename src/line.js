@@ -23,12 +23,24 @@ class Line {
   }
 
   get length() {
-    let dx = this.endA.x - this.endB.x;
-    let dy = this.endA.y - this.endB.y;
-    let squareOfdx = dx * dx;
-    let squareOfdy = dy * dy;
+    const dx = this.endA.x - this.endB.x;
+    const dy = this.endA.y - this.endB.y;
+    const squareOfdx = dx * dx;
+    const squareOfdy = dy * dy;
     const length = Math.sqrt(squareOfdx + squareOfdy);
     return length;
+  }
+
+  get slope() {
+    const dy = this.endB.y - this.endA.y;
+    const dx = this.endB.x - this.endA.x;
+    return dy / dx;
+  }
+
+  isParallelTo(other) {
+    const slopeOfGivenLine = this.slope;
+    const slopeOfOtherLine = other.slope;
+    return slopeOfGivenLine == slopeOfOtherLine;
   }
 }
 

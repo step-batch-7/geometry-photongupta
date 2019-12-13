@@ -47,5 +47,51 @@ describe("Line", function() {
       const line = new Line({ x: 5, y: 2 }, { x: 5, y: 2 });
       assert.strictEqual(line.length, 0);
     });
+
+    it("should give the distance between two points if coordinates are negative", function() {
+      const line = new Line({ x: -5, y: -4 }, { x: -6, y: -4 });
+      assert.strictEqual(line.length, 1);
+    });
+
+    it("should give the distance between two points if coordinates are floating point numbers", function() {
+      const line = new Line({ x: 1.5, y: 2.0 }, { x: 1.5, y: 1.5 });
+      assert.approximately(line.length, 0.5, 0.5);
+    });
+  });
+
+  describe("isParallelTo", function() {
+    it("should give true if the given line is parallel to the other line", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = new Line({ x: 8, y: 1 }, { x: 10, y: 5 });
+      assert.ok(line1.isParallelTo(line2));
+    });
+
+    it("should give false if the given line is not parallel to the other line", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = new Line({ x: 9, y: 1 }, { x: 10, y: 5 });
+      assert.isNotOk(line1.isParallelTo(line2));
+    });
+  });
+
+  describe("slope", function() {
+    it("should give the slope of given line", function() {
+      const line = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      assert.strictEqual(line.slope, 2);
+    });
+
+    it("should give zero if line is parallel to x axis", function() {
+      const line = new Line({ x: -3, y: 4 }, { x: 5, y: 4 });
+      assert.strictEqual(line.slope, 0);
+    });
+
+    it("should give infinity if line is parallel to y axis", function() {
+      const line = new Line({ x: 3, y: -4 }, { x: 3, y: 8 });
+      assert.strictEqual(line.slope, Infinity);
+    });
+
+    it("should give the NaN if points are same ", function() {
+      const line = new Line({ x: 5, y: 2 }, { x: 5, y: 2 });
+      assert.isNaN(line.slope);
+    });
   });
 });
