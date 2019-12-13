@@ -72,6 +72,12 @@ describe("Line", function() {
       assert.isFalse(line1.isParallelTo(line2));
     });
 
+    it("should give false if the lines are not the instances of same class", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = { endA: { x: 9, y: 1 }, endB: { x: 10, y: 5 } };
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+
     it("should give true if both the lines are coinciding", function() {
       const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       const line2 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
