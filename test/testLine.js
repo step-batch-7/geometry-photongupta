@@ -1,31 +1,29 @@
-const Line = require("../src/lineLib.js");
+const Line = require("../src/line.js");
 const assert = require("assert");
 
 describe("Line", function() {
   describe("toString", function() {
     it("should give the string representation of the line", function() {
-      let line1 = new Line(1, 2, 3, 4);
-      let actual = line1.toString();
-      let expected = `Line : endA(1, 2)--------endB(3, 4})`;
-      assert.deepStrictEqual(actual, expected);
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const actual = line1.toString();
+      const expected = `Line : endA(1, 2)--------endB(3, 4})`;
+      assert.strictEqual(actual, expected);
     });
   });
 
   describe("isEqual", function() {
     it(" should validate if given lines are not equal", function() {
-      let line1 = new Line(1, 2, 3, 4);
-      let line2 = new Line(5, 6, 7, 8);
-      let actual = line1.isEqual(line2);
-      let expected = false;
-      assert.deepStrictEqual(actual, expected);
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 4, y: 5 }, { x: 6, y: 6 });
+      const actual = line1.isEqual(line2);
+      assert.strictEqual(actual, false);
     });
 
     it(" should validate if given lines are equal", function() {
-      let line1 = new Line(1, 2, 3, 4);
-      let line2 = new Line(1, 2, 3, 4);
-      let actual = line1.isEqual(line2);
-      let expected = false;
-      assert.deepStrictEqual(actual, expected);
+      const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
+      const actual = line1.isEqual(line2);
+      assert.ok(actual);
     });
   });
 });
