@@ -1,4 +1,4 @@
-const isPointsEqual = function(point1, point2) {
+const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
@@ -9,15 +9,16 @@ class Line {
   }
 
   toString() {
-    return `Line : endA(${this.endA.x}, ${this.endA.y}) -- endB(${this.endB.x}, ${this.endB.y}})`;
+    const endA = `(${this.endA.x},${this.endA.y})`;
+    const endB = `(${this.endB.x},${this.endB.y})`;
+    return `Line: ${endA} -- ${endB}`;
   }
 
-  isEqual(otherLine) {
-    const isValidLine = otherLine instanceof Line;
+  isEqual(other) {
+    if (!(other instanceof Line)) return false;
     return (
-      isValidLine &&
-      isPointsEqual(this.endA, otherLine.endA) &&
-      isPointsEqual(this.endB, otherLine.endB)
+      arePointsEqual(this.endA, other.endA) &&
+      arePointsEqual(this.endB, other.endB)
     );
   }
 }

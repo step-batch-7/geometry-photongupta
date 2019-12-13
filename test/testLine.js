@@ -6,7 +6,7 @@ describe("Line", function() {
     it("should give the string representation of the line", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const actual = line1.toString();
-      const expected = `Line : endA(1, 2) -- endB(3, 4})`;
+      const expected = `Line: (1,2) -- (3,4)`;
       assert.strictEqual(actual, expected);
     });
   });
