@@ -15,25 +15,25 @@ describe("Line", function() {
     it(" should validate if given lines are not equal", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 4, y: 5 }, { x: 6, y: 6 });
-      assert.isNotOk(line1.isEqual(line2));
+      assert.isFalse(line1.isEqual(line2));
     });
 
     it(" should validate if given lines are equal", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      assert.ok(line1.isEqual(line2));
+      assert.isTrue(line1.isEqual(line2));
     });
 
     it(" should validate if given lines are not the instances of same class", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = { endA: { x: 1, y: 2 }, endB: { x: 3, y: 4 } };
-      assert.isNotOk(line1.isEqual(line2));
+      assert.isFalse(line1.isEqual(line2));
     });
 
     it(" should validate if one of the input in not a line", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = "";
-      assert.isNotOk(line1.isEqual(line2));
+      assert.isFalse(line1.isEqual(line2));
     });
   });
 
@@ -63,13 +63,19 @@ describe("Line", function() {
     it("should give true if the given line is parallel to the other line", function() {
       const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       const line2 = new Line({ x: 8, y: 1 }, { x: 10, y: 5 });
-      assert.ok(line1.isParallelTo(line2));
+      assert.isTrue(line1.isParallelTo(line2));
     });
 
     it("should give false if the given line is not parallel to the other line", function() {
       const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       const line2 = new Line({ x: 9, y: 1 }, { x: 10, y: 5 });
-      assert.isNotOk(line1.isParallelTo(line2));
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+
+    it("should give true if both the lines are coinciding", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      assert.isTrue(line1.isParallelTo(line2));
     });
   });
 
@@ -77,6 +83,16 @@ describe("Line", function() {
     it("should give the slope of given line", function() {
       const line = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       assert.strictEqual(line.slope, 2);
+    });
+
+    it("should give the slope of given line if points are negative", function() {
+      const line = new Line({ x: -3, y: -4 }, { x: -5, y: -8 });
+      assert.strictEqual(line.slope, 2);
+    });
+
+    it("should give the slope of given line if points are floating points numbers", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1.5, y: 2.5 });
+      assert.strictEqual(line.slope, 1);
     });
 
     it("should give zero if line is parallel to x axis", function() {
