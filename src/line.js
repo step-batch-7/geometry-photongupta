@@ -25,9 +25,7 @@ class Line {
   get length() {
     const dx = this.endA.x - this.endB.x;
     const dy = this.endA.y - this.endB.y;
-    const squareOfdx = dx * dx;
-    const squareOfdy = dy * dy;
-    const length = Math.sqrt(squareOfdx + squareOfdy);
+    const length = Math.sqrt(dx * dx + dy * dy);
     return length;
   }
 
