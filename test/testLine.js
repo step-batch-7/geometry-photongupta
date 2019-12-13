@@ -36,4 +36,16 @@ describe("Line", function() {
       assert.isNotOk(line1.isEqual(line2));
     });
   });
+
+  describe("length", function() {
+    it("should give the distance between two points if points are different", function() {
+      const line = new Line({ x: 5, y: 5 }, { x: 2, y: 1 });
+      assert.strictEqual(line.length, 5);
+    });
+
+    it("should give the zero if points are same ", function() {
+      const line = new Line({ x: 5, y: 2 }, { x: 5, y: 2 });
+      assert.strictEqual(line.length, 0);
+    });
+  });
 });
