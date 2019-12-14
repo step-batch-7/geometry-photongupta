@@ -41,13 +41,25 @@ class Line {
   }
 
   findX = function(y) {
-    const slope = this.slope;
-    return (y - this.endA.y) / slope + this.endA.x;
+    if (
+      !(
+        (y > this.endA.y && y < this.endB.y) ||
+        (y < this.endA.y && y > this.endB.y)
+      )
+    )
+      return NaN;
+    return (y - this.endA.y) / this.slope + this.endA.x;
   };
 
   findY = function(x) {
-    const slope = this.slope;
-    return (x - this.endA.x) * slope + this.endA.y;
+    if (
+      !(
+        (x > this.endA.x && x < this.endB.x) ||
+        (x < this.endA.x && x > this.endB.x)
+      )
+    )
+      return NaN;
+    return (x - this.endA.x) * this.slope + this.endA.y;
   };
 }
 

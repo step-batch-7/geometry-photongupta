@@ -127,6 +127,11 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: 5 }, { x: 1, y: 5 });
       assert.isNaN(line.findX(2));
     });
+
+    it("should say not a number if ordinate is outside of the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 1, y: 5 });
+      assert.isNaN(line.findX(12));
+    });
   });
 
   describe("findY", function() {
@@ -138,6 +143,11 @@ describe("Line", function() {
     it("should say not a number if points of given lines are same", function() {
       const line = new Line({ x: 1, y: 5 }, { x: 1, y: 5 });
       assert.isNaN(line.findY(2));
+    });
+
+    it("should say not a number if abscissa is outside of the line", function() {
+      const line = new Line({ x: 1, y: 5 }, { x: 5, y: 5 });
+      assert.isNaN(line.findY(12));
     });
   });
 });
