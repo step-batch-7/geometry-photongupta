@@ -150,4 +150,13 @@ describe("Line", function() {
       assert.isNaN(line.findY(12));
     });
   });
+
+  describe("split", function() {
+    it("should give the  two equal lines of half of the length of given line", function() {
+      const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
+      const line1 = new Line({ x: 0, y: 2 }, { x: 1, y: 1 });
+      const line2 = new Line({ x: 1, y: 1 }, { x: 2, y: 0 });
+      assert.deepStrictEqual(line.split(), [line1, line2]);
+    });
+  });
 });

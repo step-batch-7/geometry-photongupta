@@ -1,3 +1,5 @@
+const Point = require("../src/point.js");
+
 const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
@@ -48,15 +50,24 @@ class Line {
     return other instanceof Line && this.slope == other.slope;
   }
 
-  findX = function(y) {
+  findX(y) {
     if (isOrdinateOnTheLine(y, this.endA, this.endB)) return NaN;
     return (y - this.endA.y) / this.slope + this.endA.x;
-  };
+  }
 
-  findY = function(x) {
+  findY(x) {
     if (isAbscissaOnTheLine(x, this.endA, this.endB)) return NaN;
     return (x - this.endA.x) * this.slope + this.endA.y;
-  };
+  }
+
+  split() {
+    const midAbscissa = (this.endA.x + this.endB.x) / 2;
+    const midOrdinate = (this.endA.y + this.endB.y) / 2;
+    const midPoint = new Point(midAbscissa, midOrdinate);
+    const line1 = new Line(this.endA, midPoint);
+    const line2 = new Line(midPoint, this.endB);
+    return [line1, line2];
+  }
 }
 
 module.exports = Line;
