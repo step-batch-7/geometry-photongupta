@@ -43,6 +43,11 @@ class Line {
     const slope = this.slope;
     return (y - this.endA.y) / slope + this.endA.x;
   };
+
+  findY = function(x) {
+    const slope = this.slope;
+    return (x - this.endA.x) / slope + this.endA.y;
+  };
 }
 
 module.exports = Line;

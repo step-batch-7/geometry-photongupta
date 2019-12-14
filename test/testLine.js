@@ -123,4 +123,11 @@ describe("Line", function() {
       assert.deepStrictEqual(line.findX(2), 2);
     });
   });
+
+  describe("findY", function() {
+    it("should give the the ordinate of the line for given abscissa", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.deepStrictEqual(line.findY(2), 2);
+    });
+  });
 });
