@@ -10,4 +10,18 @@ describe("Point", function() {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("isEqual", function() {
+    it(" should validate if given points are not equal", function() {
+      const point1 = new Point(2, 3);
+      const point2 = new Point(1, 3);
+      assert.isFalse(point1.isEqual(point2));
+    });
+
+    it(" should validate if given points are equal", function() {
+      const point1 = new Point(3, 4);
+      const point2 = new Point(3, 4);
+      assert.isTrue(point1.isEqual(point2));
+    });
+  });
 });
