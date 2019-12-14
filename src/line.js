@@ -15,10 +15,6 @@ const isLineParallelToAxis = function(coordinate, point1, point2) {
   return coordinate == point1 && point1 == point2;
 };
 
-const isLineParallelToYAxis = function(x, point1, point2) {
-  return x == point1.x && point1.x == point2.x;
-};
-
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
