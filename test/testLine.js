@@ -119,9 +119,14 @@ describe("Line", function() {
   });
 
   describe("findX", function() {
-    it("should give the the x coordinate of the line for given y coordinate", function() {
+    it("should give the the abscissa of the line for given ordinate", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
-      assert.deepStrictEqual(line.findX(2), 2);
+      assert.equal(line.findX(2), 2);
+    });
+
+    it("should give the the abscissa of the line for given ordinate if line parallel to x axis", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 1 });
+      assert.equal(line.findX(1), 1);
     });
 
     it("should say not a number if points of given lines are same", function() {
@@ -139,6 +144,11 @@ describe("Line", function() {
     it("should give the the ordinate of the line for given abscissa", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.deepStrictEqual(line.findY(2), 2);
+    });
+
+    it("should give the the abscissa of the line for given ordinate if line parallel to y axis", function() {
+      const line = new Line({ x: 1, y: 2 }, { x: 1, y: 4 });
+      assert.equal(line.findY(1), 2);
     });
 
     it("should say not a number if points of given lines are same", function() {
@@ -172,7 +182,25 @@ describe("Line", function() {
     it("should give true if the point is situated on the line", function() {
       const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
       const point = new Point(1, 1);
-      assert.deepStrictEqual(line.hasPoint(point), true);
+      assert.isTrue(line.hasPoint(point));
+    });
+
+    it("should give false if the  abscissa of point is not situated on the line", function() {
+      const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
+      const point = new Point(4, 5);
+      assert.isFalse(line.hasPoint(point));
+    });
+
+    it("should give false if the ordinate of point is not situated on the line", function() {
+      const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
+      const point = new Point(4, 5);
+      assert.isFalse(line.hasPoint(point));
+    });
+
+    it("should give false if the  abscissa and ordinate of point is  not situated on the line", function() {
+      const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
+      const point = new Point(4, 5);
+      assert.isFalse(line.hasPoint(point));
     });
   });
 });
