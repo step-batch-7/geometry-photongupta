@@ -122,12 +122,22 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.deepStrictEqual(line.findX(2), 2);
     });
+
+    it("should say not a number if points of given lines are same", function() {
+      const line = new Line({ x: 1, y: 5 }, { x: 1, y: 5 });
+      assert.isNaN(line.findX(2));
+    });
   });
 
   describe("findY", function() {
     it("should give the the ordinate of the line for given abscissa", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       assert.deepStrictEqual(line.findY(2), 2);
+    });
+
+    it("should say not a number if points of given lines are same", function() {
+      const line = new Line({ x: 1, y: 5 }, { x: 1, y: 5 });
+      assert.isNaN(line.findY(2));
     });
   });
 });
