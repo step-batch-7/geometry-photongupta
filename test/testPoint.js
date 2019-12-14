@@ -23,5 +23,17 @@ describe("Point", function() {
       const point2 = new Point(3, 4);
       assert.isTrue(point1.isEqual(point2));
     });
+
+    it(" should give false if other point is not the instance of Point", function() {
+      const point1 = new Point(3, 4);
+      const point2 = { x: 3, y: 4 };
+      assert.isFalse(point1.isEqual(point2));
+    });
+
+    it(" should give false if other point is not a point", function() {
+      const point1 = new Point(3, 4);
+      const point2 = "";
+      assert.isFalse(point1.isEqual(point2));
+    });
   });
 });
