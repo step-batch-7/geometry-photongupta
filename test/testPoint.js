@@ -39,19 +39,26 @@ describe("Point", function() {
 
   describe("visit", function() {
     it(" should give the result according to the function option", function() {
-      const point1 = new Point(3, 4);
+      const point = new Point(3, 4);
       assert.strictEqual(
-        point1.visit((x, y) => x + y),
+        point.visit((x, y) => x + y),
         7
       );
     });
 
     it(" should give the result according to the function option", function() {
-      const point1 = new Point(3, 4);
+      const point = new Point(3, 4);
       assert.strictEqual(
-        point1.visit((x, y) => x * y),
+        point.visit((x, y) => x * y),
         12
       );
+    });
+  });
+
+  describe("clone", function() {
+    it("should give the clone of given point", function() {
+      const point = new Point(3, 4);
+      assert.deepStrictEqual(point.clone(), { x: 3, y: 4 });
     });
   });
 });
