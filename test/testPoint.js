@@ -36,4 +36,22 @@ describe("Point", function() {
       assert.isFalse(point1.isEqual(point2));
     });
   });
+
+  describe("visit", function() {
+    it(" should give the result according to the function option", function() {
+      const point1 = new Point(3, 4);
+      assert.strictEqual(
+        point1.visit((x, y) => x + y),
+        7
+      );
+    });
+
+    it(" should give the result according to the function option", function() {
+      const point1 = new Point(3, 4);
+      assert.strictEqual(
+        point1.visit((x, y) => x * y),
+        12
+      );
+    });
+  });
 });

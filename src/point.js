@@ -12,6 +12,10 @@ class Point {
     if (!(other instanceof Point)) return false;
     return this.x == other.x && this.y == other.y;
   }
+
+  visit(functionRef) {
+    return functionRef(this.x, this.y);
+  }
 }
 
 module.exports = Point;
