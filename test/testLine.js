@@ -55,38 +55,12 @@ describe("Line", function() {
 
     it("should give the distance between two points if coordinates are floating point numbers", function() {
       const line = new Line({ x: 1.5, y: 2.0 }, { x: 1.5, y: 1.5 });
-      assert.approximately(line.length, 0.5, 0.5);
-    });
-  });
-
-  describe("isParallelTo", function() {
-    it("should give true if the given line is parallel to the other line", function() {
-      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
-      const line2 = new Line({ x: 8, y: 1 }, { x: 10, y: 5 });
-      assert.isTrue(line1.isParallelTo(line2));
-    });
-
-    it("should give false if the given line is not parallel to the other line", function() {
-      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
-      const line2 = new Line({ x: 9, y: 1 }, { x: 10, y: 5 });
-      assert.isFalse(line1.isParallelTo(line2));
-    });
-
-    it("should give false if the lines are not the instances of same class", function() {
-      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
-      const line2 = { endA: { x: 9, y: 1 }, endB: { x: 10, y: 5 } };
-      assert.isFalse(line1.isParallelTo(line2));
-    });
-
-    it("should give true if both the lines are coinciding", function() {
-      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
-      const line2 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
-      assert.isTrue(line1.isParallelTo(line2));
+      assert.approximately(line.length, 0.5, 0.2);
     });
   });
 
   describe("slope", function() {
-    it("should give the slope of given line", function() {
+    it("should give the slope of given line if points are positive", function() {
       const line = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       assert.strictEqual(line.slope, 2);
     });
@@ -114,6 +88,32 @@ describe("Line", function() {
     it("should give the NaN if points are same ", function() {
       const line = new Line({ x: 5, y: 2 }, { x: 5, y: 2 });
       assert.isNaN(line.slope);
+    });
+  });
+
+  describe("isParallelTo", function() {
+    it("should give true if the given line is parallel to the other line", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = new Line({ x: 8, y: 1 }, { x: 10, y: 5 });
+      assert.isTrue(line1.isParallelTo(line2));
+    });
+
+    it("should give false if the given line is not parallel to the other line", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = new Line({ x: 9, y: 1 }, { x: 10, y: 5 });
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+
+    it("should give false if the lines are not the instances of same class", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = { endA: { x: 9, y: 1 }, endB: { x: 10, y: 5 } };
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+
+    it("should give true if both the lines are coinciding", function() {
+      const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      const line2 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
+      assert.isTrue(line1.isParallelTo(line2));
     });
   });
 });
