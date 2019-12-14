@@ -5,11 +5,11 @@ const arePointsEqual = function(point1, point2) {
 };
 
 const isOrdinateOnTheLine = function(y, point1, point2) {
-  return !((y > point1.y && y < point2.y) || (y < point1.y && y > point2.y));
+  return (y > point1.y && y < point2.y) || (y < point1.y && y > point2.y);
 };
 
 const isAbscissaOnTheLine = function(x, point1, point2) {
-  return !((x > point1.x && x < point2.x) || (x < point1.x && x > point2.x));
+  return (x > point1.x && x < point2.x) || (x < point1.x && x > point2.x);
 };
 
 class Line {
@@ -51,12 +51,12 @@ class Line {
   }
 
   findX(y) {
-    if (isOrdinateOnTheLine(y, this.endA, this.endB)) return NaN;
+    if (!isOrdinateOnTheLine(y, this.endA, this.endB)) return NaN;
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
-    if (isAbscissaOnTheLine(x, this.endA, this.endB)) return NaN;
+    if (!isAbscissaOnTheLine(x, this.endA, this.endB)) return NaN;
     return (x - this.endA.x) * this.slope + this.endA.y;
   }
 
@@ -67,6 +67,13 @@ class Line {
     const line1 = new Line(this.endA, midPoint);
     const line2 = new Line(midPoint, this.endB);
     return [line1, line2];
+  }
+
+  hasPoint(point) {
+    return (
+      isAbscissaOnTheLine(point.x, this.endA, this.endB) &&
+      isOrdinateOnTheLine(point.y, this.endA, this.endB)
+    );
   }
 }
 

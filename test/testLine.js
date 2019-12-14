@@ -1,4 +1,5 @@
 const Line = require("../src/line.js");
+const Point = require("../src/point.js");
 const assert = require("chai").assert;
 
 describe("Line", function() {
@@ -157,6 +158,21 @@ describe("Line", function() {
       const line1 = new Line({ x: 0, y: 2 }, { x: 1, y: 1 });
       const line2 = new Line({ x: 1, y: 1 }, { x: 2, y: 0 });
       assert.deepStrictEqual(line.split(), [line1, line2]);
+    });
+
+    it("should give the  two equal lines of half of the length of given line when points are negative", function() {
+      const line = new Line({ x: 0, y: -2 }, { x: -2, y: 0 });
+      const line1 = new Line({ x: 0, y: -2 }, { x: -1, y: -1 });
+      const line2 = new Line({ x: -1, y: -1 }, { x: -2, y: 0 });
+      assert.deepStrictEqual(line.split(), [line1, line2]);
+    });
+  });
+
+  describe("hasPoint", function() {
+    it("should give true if the point is situated on the line", function() {
+      const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
+      const point = new Point(1, 1);
+      assert.deepStrictEqual(line.hasPoint(point), true);
     });
   });
 });
