@@ -36,6 +36,7 @@ class Line {
   }
 
   isParallelTo(other) {
+    if (this.isEqual(other)) return false;
     return other instanceof Line && this.slope == other.slope;
   }
 
@@ -46,7 +47,7 @@ class Line {
 
   findY = function(x) {
     const slope = this.slope;
-    return (x - this.endA.x) / slope + this.endA.y;
+    return (x - this.endA.x) * slope + this.endA.y;
   };
 }
 

@@ -110,10 +110,10 @@ describe("Line", function() {
       assert.isFalse(line1.isParallelTo(line2));
     });
 
-    it("should give true if both the lines are coinciding", function() {
+    it("should give false if both the lines are coinciding", function() {
       const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       const line2 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
-      assert.isTrue(line1.isParallelTo(line2));
+      assert.isFalse(line1.isParallelTo(line2));
     });
   });
 
