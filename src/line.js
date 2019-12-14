@@ -4,16 +4,15 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
-const isOrdinateOnTheLine = function(y, point1, point2) {
-  return (y >= point1.y && y <= point2.y) || (y <= point1.y && y >= point2.y);
+const isPointOnTheLine = function(coordinate, point1, point2) {
+  return (
+    (coordinate >= point1 && coordinate <= point2) ||
+    (coordinate <= point1 && coordinate >= point2)
+  );
 };
 
-const isAbscissaOnTheLine = function(x, point1, point2) {
-  return (x >= point1.x && x <= point2.x) || (x <= point1.x && x >= point2.x);
-};
-
-const isLineParallelToXAxis = function(y, point1, point2) {
-  return y == point1.y && point1.y == point2.y;
+const isLineParallelToAxis = function(coordinate, point1, point2) {
+  return coordinate == point1 && point1 == point2;
 };
 
 const isLineParallelToYAxis = function(x, point1, point2) {
@@ -59,14 +58,14 @@ class Line {
   }
 
   findX(y) {
-    if (!isOrdinateOnTheLine(y, this.endA, this.endB)) return NaN;
-    if (isLineParallelToXAxis(y, this.endA, this.endB)) return this.endA.x;
+    if (!isPointOnTheLine(y, this.endA.y, this.endB.y)) return NaN;
+    if (isLineParallelToAxis(y, this.endA.y, this.endB.y)) return this.endA.x;
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
-    if (!isAbscissaOnTheLine(x, this.endA, this.endB)) return NaN;
-    if (isLineParallelToYAxis(x, this.endA, this.endB)) return this.endA.y;
+    if (!isPointOnTheLine(x, this.endA.x, this.endB.x)) return NaN;
+    if (isLineParallelToAxis(x, this.endA.x, this.endB.x)) return this.endA.y;
     return (x - this.endA.x) * this.slope + this.endA.y;
   }
 
@@ -81,8 +80,8 @@ class Line {
 
   hasPoint(point) {
     return (
-      isAbscissaOnTheLine(point.x, this.endA, this.endB) &&
-      isOrdinateOnTheLine(point.y, this.endA, this.endB)
+      isPointOnTheLine(point.x, this.endA.x, this.endB.x) &&
+      isPointOnTheLine(point.y, this.endA.y, this.endB.y)
     );
   }
 }
