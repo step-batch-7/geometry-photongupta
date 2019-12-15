@@ -99,6 +99,12 @@ describe("Line", function() {
       assert.isTrue(line1.isParallelTo(line2));
     });
 
+    it("should give false  if the given lines are segment of the same line", function() {
+      const line1 = new Line({ x: 1, y: 1 }, { x: 2, y: 2 });
+      const line2 = new Line({ x: 3, y: 3 }, { x: 4, y: 4 });
+      assert.isFalse(line1.isParallelTo(line2));
+    });
+
     it("should give false if the given line is not parallel to the other line", function() {
       const line1 = new Line({ x: 3, y: 4 }, { x: 5, y: 8 });
       const line2 = new Line({ x: 9, y: 1 }, { x: 10, y: 5 });

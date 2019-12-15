@@ -5,8 +5,17 @@ const arePointsEqual = function(point1, point2) {
 };
 
 const isCoordinateOnTheLine = function(coordinate, coordinateOfEnds) {
-  const [coordinateOfEnd1, coordinateOfEnd2] = coordinateOfEnds.sort();
+  const [coordinateOfEnd1, coordinateOfEnd2] = coordinateOfEnds.sort(
+    (x, y) => x - y
+  );
   return coordinate >= coordinateOfEnd1 && coordinate <= coordinateOfEnd2;
+};
+
+const arePointsCollinear = function(point1, point2, point3) {
+  const [x1, y1] = [point1.x, point1.y];
+  const [x2, y2] = [point2.x, point2.y];
+  const [x3, y3] = [point3.x, point3.y];
+  return x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2) == 0;
 };
 
 class Line {
@@ -43,20 +52,28 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (this.isEqual(other)) return false;
-    return other instanceof Line && this.slope == other.slope;
+    if (!other instanceof Line) return false;
+    const isSlopeEqual = this.slope == other.slope;
+    const arePointsNonCollinear = !arePointsCollinear(
+      this.endA,
+      this.endB,
+      other.endA
+    );
+    return isSlopeEqual && arePointsNonCollinear;
   }
 
-  findX(y) {
-    if (!isCoordinateOnTheLine(y, [this.endA.y, this.endB.y])) return NaN;
+  findX(ordinate) {
+    if (!isCoordinateOnTheLine(ordinate, [this.endA.y, this.endB.y]))
+      return NaN;
     if (this.slope == 0) return this.endA.x;
-    return (y - this.endA.y) / this.slope + this.endA.x;
+    return (ordinate - this.endA.y) / this.slope + this.endA.x;
   }
 
-  findY(x) {
-    if (!isCoordinateOnTheLine(x, [this.endA.x, this.endB.x])) return NaN;
+  findY(abscissa) {
+    if (!isCoordinateOnTheLine(abscissa, [this.endA.x, this.endB.x]))
+      return NaN;
     if (this.slope == Infinity) return this.endA.y;
-    return (x - this.endA.x) * this.slope + this.endA.y;
+    return (abscissa - this.endA.x) * this.slope + this.endA.y;
   }
 
   split() {
