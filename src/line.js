@@ -71,10 +71,8 @@ class Line {
   }
 
   hasPoint(point) {
-    return (
-      isPointOnTheLine(point.x, this.endA.x, this.endB.x) &&
-      isPointOnTheLine(point.y, this.endA.y, this.endB.y)
-    );
+    if (!(point instanceof Point)) return false;
+    return point.x == this.findX(point.y) || point.y == this.findY(point.x);
   }
 }
 
