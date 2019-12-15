@@ -11,10 +11,6 @@ const isPointOnTheLine = function(coordinate, point1, point2) {
   );
 };
 
-const isLineParallelToAxis = function(coordinate, point1, point2) {
-  return coordinate == point1 && point1 == point2;
-};
-
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -55,13 +51,13 @@ class Line {
 
   findX(y) {
     if (!isPointOnTheLine(y, this.endA.y, this.endB.y)) return NaN;
-    if (isLineParallelToAxis(y, this.endA.y, this.endB.y)) return this.endA.x;
+    if (this.slope == 0) return this.endA.x;
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
     if (!isPointOnTheLine(x, this.endA.x, this.endB.x)) return NaN;
-    if (isLineParallelToAxis(x, this.endA.x, this.endB.x)) return this.endA.y;
+    if (this.slope == Infinity) return this.endA.y;
     return (x - this.endA.x) * this.slope + this.endA.y;
   }
 

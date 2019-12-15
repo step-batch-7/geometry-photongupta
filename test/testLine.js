@@ -125,8 +125,8 @@ describe("Line", function() {
     });
 
     it("should give the the abscissa of the line for given ordinate if line parallel to x axis", function() {
-      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 1 });
-      assert.equal(line.findX(1), 1);
+      const line = new Line({ x: 3, y: 1 }, { x: 1, y: 1 });
+      assert.equal(line.findX(1), 3);
     });
 
     it("should say not a number if points of given lines are same", function() {
