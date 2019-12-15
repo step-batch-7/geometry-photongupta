@@ -4,15 +4,9 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
-const isPointOnTheLine = function(
-  coordinate,
-  coordinateOfEndA,
-  coordinateOfEndB
-) {
-  return (
-    (coordinate >= coordinateOfEndA && coordinate <= coordinateOfEndB) ||
-    (coordinate <= coordinateOfEndA && coordinate >= coordinateOfEndB)
-  );
+const isCoordinateOnTheLine = function(coordinate, coordinateOfEnds) {
+  const [coordinateOfEnd1, coordinateOfEnd2] = coordinateOfEnds.sort();
+  return coordinate >= coordinateOfEnd1 && coordinate <= coordinateOfEnd2;
 };
 
 class Line {
@@ -54,13 +48,13 @@ class Line {
   }
 
   findX(y) {
-    if (!isPointOnTheLine(y, this.endA.y, this.endB.y)) return NaN;
+    if (!isCoordinateOnTheLine(y, [this.endA.y, this.endB.y])) return NaN;
     if (this.slope == 0) return this.endA.x;
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
-    if (!isPointOnTheLine(x, this.endA.x, this.endB.x)) return NaN;
+    if (!isCoordinateOnTheLine(x, [this.endA.x, this.endB.x])) return NaN;
     if (this.slope == Infinity) return this.endA.y;
     return (x - this.endA.x) * this.slope + this.endA.y;
   }
