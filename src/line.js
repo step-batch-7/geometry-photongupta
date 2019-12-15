@@ -4,10 +4,14 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
-const isPointOnTheLine = function(coordinate, point1, point2) {
+const isPointOnTheLine = function(
+  coordinate,
+  coordinateOfEndA,
+  coordinateOfEndB
+) {
   return (
-    (coordinate >= point1 && coordinate <= point2) ||
-    (coordinate <= point1 && coordinate >= point2)
+    (coordinate >= coordinateOfEndA && coordinate <= coordinateOfEndB) ||
+    (coordinate <= coordinateOfEndA && coordinate >= coordinateOfEndB)
   );
 };
 
