@@ -13,8 +13,8 @@ class Point {
     return this.x == other.x && this.y == other.y;
   }
 
-  visit(functionRef) {
-    return functionRef(this.x, this.y);
+  visit(action) {
+    return action(this.x, this.y);
   }
 
   clone() {
