@@ -215,4 +215,11 @@ describe("Line", function() {
       assert.isFalse(line.hasPoint(point));
     });
   });
+
+  describe("findPointFromStart", function() {
+    it("should give the point on line which is at the given distance from start of the line", function() {
+      const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+      assert.deepStrictEqual(line.findPointFromStart(1), { x: 9, y: 1 });
+    });
+  });
 });

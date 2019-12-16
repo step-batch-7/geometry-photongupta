@@ -90,6 +90,15 @@ class Line {
     if (!(point instanceof Point)) return false;
     return point.x == this.findX(point.y) || point.y == this.findY(point.x);
   }
+
+  findPointFromStart(distance) {
+    const t = distance / this.length;
+    return {
+      x: (1 - t) * this.endA.x + this.endB.x * t,
+      y: (1 - t) * this.endA.y + this.endB.y * t
+    };
+    // return { x, y };
+  }
 }
 
 module.exports = Line;
