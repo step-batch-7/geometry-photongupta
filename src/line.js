@@ -1,9 +1,5 @@
 const Point = require("../src/point.js");
 
-const arePointsEqual = function(point1, point2) {
-  return point1.x === point2.x && point1.y === point2.y;
-};
-
 const isCoordinateOnTheLine = function(coordinate, coordinateOfEnds) {
   const [coordinateOfEnd1, coordinateOfEnd2] = coordinateOfEnds.sort(
     (x, y) => x - y
@@ -19,8 +15,8 @@ const arePointsCollinear = function(point1, point2, point3) {
 
 class Line {
   constructor(endA, endB) {
-    this.endA = { x: endA.x, y: endA.y };
-    this.endB = { x: endB.x, y: endB.y };
+    this.endA = new Point(endA.x, endA.y);
+    this.endB = new Point(endB.x, endB.y);
   }
 
   toString() {
@@ -32,10 +28,8 @@ class Line {
   isEqualTo(other) {
     if (!(other instanceof Line)) return false;
     return (
-      (arePointsEqual(this.endA, other.endA) &&
-        arePointsEqual(this.endB, other.endB)) ||
-      (arePointsEqual(this.endA, other.endB) &&
-        arePointsEqual(this.endB, other.endA))
+      (this.endA.isEqualTo(other.endA) && this.endB.isEqualTo(other.endB)) ||
+      (this.endA.isEqualTo(other.endB) && this.endB.isEqualTo(other.endA))
     );
   }
 
