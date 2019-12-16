@@ -12,35 +12,35 @@ describe("Line", function() {
     });
   });
 
-  describe("isEqual", function() {
+  describe("isEqualTo", function() {
     it(" should validate if given lines are not equal", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 4, y: 5 }, { x: 6, y: 6 });
-      assert.isFalse(line1.isEqual(line2));
+      assert.isFalse(line1.isEqualTo(line2));
     });
 
     it(" should validate if given lines are equal", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
-      assert.isTrue(line1.isEqual(line2));
+      assert.isTrue(line1.isEqualTo(line2));
     });
 
     it(" should validate if points of lines are swapped", function() {
       const line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
       const line2 = new Line({ x: 1, y: 1 }, { x: 0, y: 0 });
-      assert.isTrue(line1.isEqual(line2));
+      assert.isTrue(line1.isEqualTo(line2));
     });
 
     it(" should validate if given lines are not the instances of same class", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = { endA: { x: 1, y: 2 }, endB: { x: 3, y: 4 } };
-      assert.isFalse(line1.isEqual(line2));
+      assert.isFalse(line1.isEqualTo(line2));
     });
 
     it(" should validate if one of the input in not a line", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = "";
-      assert.isFalse(line1.isEqual(line2));
+      assert.isFalse(line1.isEqualTo(line2));
     });
   });
 

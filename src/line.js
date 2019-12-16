@@ -29,7 +29,7 @@ class Line {
     return `[Line ${endA} to ${endB}]`;
   }
 
-  isEqual(other) {
+  isEqualTo(other) {
     if (!(other instanceof Line)) return false;
     return (
       (arePointsEqual(this.endA, other.endA) &&

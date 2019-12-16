@@ -8,7 +8,7 @@ class Point {
     return `[Point @(${this.x},${this.y})]`;
   }
 
-  isEqual(other) {
+  isEqualTo(other) {
     if (!(other instanceof Point)) return false;
     return this.x == other.x && this.y == other.y;
   }
