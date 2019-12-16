@@ -61,4 +61,24 @@ describe("Point", function() {
       assert.deepStrictEqual(point.clone(), { x: 3, y: 4 });
     });
   });
+
+  describe("findDistanceTo", function() {
+    it("should give the distance between given points", function() {
+      const point1 = new Point(5, 5);
+      const point2 = new Point(2, 1);
+      assert.strictEqual(point1.findDistanceTo(point2), 5);
+    });
+
+    it("should give zero if points are same", function() {
+      const point1 = new Point(5, 5);
+      const point2 = new Point(5, 5);
+      assert.strictEqual(point1.findDistanceTo(point2), 0);
+    });
+
+    it("should give not a number if other point is not the instance of Point class", function() {
+      const point1 = new Point(5, 5);
+      const point2 = { x: 2, y: 1 };
+      assert.isNaN(point1.findDistanceTo(point2));
+    });
+  });
 });
