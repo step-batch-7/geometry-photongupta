@@ -89,5 +89,11 @@ describe("Point", function() {
       const point = new Point(2, 2);
       assert.isTrue(point.isOn(line));
     });
+
+    it("should give false if the given point is on the line ", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(5, 5);
+      assert.isFalse(point.isOn(line));
+    });
   });
 });
