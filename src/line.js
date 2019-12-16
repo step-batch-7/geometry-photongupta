@@ -73,7 +73,7 @@ class Line {
   findY(abscissa) {
     if (!isCoordinateOnTheLine(abscissa, [this.endA.x, this.endB.x]))
       return NaN;
-    if (this.slope == Infinity) return this.endA.y;
+    if (this.slope == Infinity || this.slope == -Infinity) return this.endA.y;
     return (abscissa - this.endA.x) * this.slope + this.endA.y;
   }
 
