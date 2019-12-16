@@ -203,6 +203,12 @@ describe("Line", function() {
       assert.isFalse(line.hasPoint(point));
     });
 
+    it("should give false if the  abscissa of point is not situated on the line", function() {
+      const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
+      const point = { x: 4, y: 5 };
+      assert.isFalse(line.hasPoint(point));
+    });
+
     it("should give false if the ordinate of point is not situated on the line", function() {
       const line = new Line({ x: 0, y: 2 }, { x: 2, y: 0 });
       const point = new Point(4, 5);

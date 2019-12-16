@@ -11,8 +11,12 @@ class Circle {
   }
 
   isEqualTo(other) {
-    if (!other instanceof Circle) return false;
+    if (!(other instanceof Circle)) return false;
     return this.centre.isEqualTo(other.centre) && this.radius == other.radius;
+  }
+
+  get area() {
+    return (22 / 7) * this.radius ** 2;
   }
 }
 

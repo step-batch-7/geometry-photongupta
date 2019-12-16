@@ -45,7 +45,7 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (!other instanceof Line) return false;
+    if (!(other instanceof Line)) return false;
     const arePointsNonCollinear = !arePointsCollinear(
       this.endA,
       this.endB,

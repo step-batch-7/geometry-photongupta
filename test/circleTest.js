@@ -53,4 +53,18 @@ describe("Circle", function() {
       assert.isFalse(circle1.isEqualTo(circle2));
     });
   });
+
+  describe("area", function() {
+    it("should give the area of given circle", function() {
+      const point = new Point(0, 0);
+      const circle = new Circle(point, 7);
+      assert.strictEqual(circle.area, 154);
+    });
+
+    it("should give zero if radius of the circle is zero", function() {
+      const point = new Point(0, 0);
+      const circle = new Circle(point, 0);
+      assert.strictEqual(circle.area, 0);
+    });
+  });
 });
