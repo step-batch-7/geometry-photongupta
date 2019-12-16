@@ -67,4 +67,18 @@ describe("Circle", function() {
       assert.closeTo(circle.area, 0, 0.5);
     });
   });
+
+  describe("perimeter", function() {
+    it("should give perimeter of the given circle", function() {
+      const point = new Point(0, 0);
+      const circle = new Circle(point, 7);
+      assert.closeTo(circle.perimeter, 44, 0.5);
+    });
+
+    it("should give zero if the radius of circle is zero", function() {
+      const point = new Point(0, 0);
+      const circle = new Circle(point, 0);
+      assert.closeTo(circle.perimeter, 0, 0);
+    });
+  });
 });
