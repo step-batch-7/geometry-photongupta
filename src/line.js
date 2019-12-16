@@ -31,8 +31,10 @@ class Line {
   isEqual(other) {
     if (!(other instanceof Line)) return false;
     return (
-      arePointsEqual(this.endA, other.endA) &&
-      arePointsEqual(this.endB, other.endB)
+      (arePointsEqual(this.endA, other.endA) &&
+        arePointsEqual(this.endB, other.endB)) ||
+      (arePointsEqual(this.endA, other.endB) &&
+        arePointsEqual(this.endB, other.endA))
     );
   }
 

@@ -25,6 +25,12 @@ describe("Line", function() {
       assert.isTrue(line1.isEqual(line2));
     });
 
+    it(" should validate if points of lines are swapped", function() {
+      const line1 = new Line({ x: 0, y: 0 }, { x: 1, y: 1 });
+      const line2 = new Line({ x: 1, y: 1 }, { x: 0, y: 0 });
+      assert.isTrue(line1.isEqual(line2));
+    });
+
     it(" should validate if given lines are not the instances of same class", function() {
       const line1 = new Line({ x: 1, y: 2 }, { x: 3, y: 4 });
       const line2 = { endA: { x: 1, y: 2 }, endB: { x: 3, y: 4 } };
