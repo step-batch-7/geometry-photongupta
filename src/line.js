@@ -92,12 +92,17 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    const t = distance / this.length;
+    if (distance > this.length || !Number.isInteger(distance) || distance < 0)
+      return null;
+    const ratio = distance / this.length;
     return {
-      x: (1 - t) * this.endA.x + this.endB.x * t,
-      y: (1 - t) * this.endA.y + this.endB.y * t
+      x: (1 - ratio) * this.endA.x + this.endB.x * ratio,
+      y: (1 - ratio) * this.endA.y + this.endB.y * ratio
     };
-    // return { x, y };
+  }
+
+  findPointFromEnd(distance) {
+    return new Line(this.endB, this.endA).findPointFromStart(distance);
   }
 }
 

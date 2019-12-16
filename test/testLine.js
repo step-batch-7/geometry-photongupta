@@ -217,9 +217,46 @@ describe("Line", function() {
   });
 
   describe("findPointFromStart", function() {
-    it("should give the point on line which is at the given distance from start of the line", function() {
+    it("should give the point on ine which is at the given distance from start of the line", function() {
       const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
       assert.deepStrictEqual(line.findPointFromStart(1), { x: 9, y: 1 });
+    });
+
+    it("should give null if distance is greater than length of line", function() {
+      const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+      assert.isNull(line.findPointFromStart(5));
+    });
+
+    it("should give null if distance is not a number", function() {
+      const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+      assert.isNull(line.findPointFromStart(""));
+    });
+
+    it("should give null if distance is less than zero", function() {
+      const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+      assert.isNull(line.findPointFromStart(-2));
+    });
+  });
+
+  describe("findPointFromEnd", function() {
+    it("should give the point on line which is at the given distance from start of the line", function() {
+      const line = new Line({ x: 7, y: 1 }, { x: 10, y: 1 });
+      assert.deepStrictEqual(line.findPointFromEnd(1), { x: 9, y: 1 });
+    });
+
+    it("should give null if distance is greater than length of line", function() {
+      const line = new Line({ x: 8, y: 1 }, { x: 8, y: 3 });
+      assert.isNull(line.findPointFromEnd(5));
+    });
+
+    it("should give null if distance is not a number", function() {
+      const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+      assert.isNull(line.findPointFromEnd(""));
+    });
+
+    it("should give null if distance is less than zero", function() {
+      const line = new Line({ x: 8, y: 1 }, { x: 10, y: 1 });
+      assert.isNull(line.findPointFromEnd(-2));
     });
   });
 });
