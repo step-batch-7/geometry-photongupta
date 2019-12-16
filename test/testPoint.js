@@ -1,5 +1,6 @@
 const Point = require("../src/point.js");
 const Line = require("../src/line.js");
+const Circle = require("../src/circle.js");
 const assert = require("chai").assert;
 
 describe("Point", function() {
@@ -94,6 +95,20 @@ describe("Point", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = new Point(5, 5);
       assert.isFalse(point.isOn(line));
+    });
+
+    it("should validate if the given point lies on the circumference of the circle ", function() {
+      const point1 = new Point(0, 0);
+      const circle = new Circle(point1, 5);
+      const point = new Point(0, 5);
+      assert.isTrue(point.isOn(circle));
+    });
+
+    it("should  not validate if the given point doesn't lies on the circumference of the circle ", function() {
+      const point1 = new Point(0, 0);
+      const circle = new Circle(point1, 5);
+      const point = new Point(0, 2);
+      assert.isFalse(point.isOn(circle));
     });
   });
 });
