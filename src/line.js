@@ -11,9 +11,10 @@ const isCoordinateOnTheLine = function(coordinate, coordinateOfEnds) {
   return coordinate >= coordinateOfEnd1 && coordinate <= coordinateOfEnd2;
 };
 
-const getYIntercept = function(point, slope) {
-  const [x, y] = [point.x, point.y];
-  return y - slope * x;
+const arePointsCollinear = function(point1, point2, point3) {
+  const line1 = new Line(point1, point2);
+  const line2 = new Line(point2, point3);
+  return line1.slope == line2.slope;
 };
 
 class Line {
@@ -53,11 +54,13 @@ class Line {
 
   isParallelTo(other) {
     if (!other instanceof Line) return false;
-    const areYInterceptsNotEqual =
-      getYIntercept(this.endA, this.slope) !=
-      getYIntercept(other.endA, other.slope);
+    const arePointsNonCollinear = !arePointsCollinear(
+      this.endA,
+      this.endB,
+      other.endA
+    );
     const areSlopesEqual = this.slope == other.slope;
-    return areSlopesEqual && areYInterceptsNotEqual;
+    return areSlopesEqual && arePointsNonCollinear;
   }
 
   findX(ordinate) {
