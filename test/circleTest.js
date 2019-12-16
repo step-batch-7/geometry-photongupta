@@ -81,4 +81,27 @@ describe("Circle", function() {
       assert.closeTo(circle.perimeter, 0, 0);
     });
   });
+
+  describe("hasPoint", function() {
+    it("should validate if the given point is lies on circumference of the circle", function() {
+      const point = new Point(0, 0);
+      const point1 = new Point(0, 5);
+      const circle = new Circle(point, 5);
+      assert.isTrue(circle.hasPoint(point1));
+    });
+
+    it("should not validate if the given point is not lies on circumference of the circle", function() {
+      const point = new Point(0, 0);
+      const point1 = new Point(0, 6);
+      const circle = new Circle(point, 5);
+      assert.isFalse(circle.hasPoint(point1));
+    });
+
+    it("should validate if the given point is lies on circumference of the circle", function() {
+      const point = new Point(0, 0);
+      const point1 = { x: 0, y: 5 };
+      const circle = new Circle(point, 5);
+      assert.isFalse(circle.hasPoint(point1));
+    });
+  });
 });
