@@ -58,13 +58,13 @@ describe("Circle", function() {
     it("should give the area of given circle", function() {
       const point = new Point(0, 0);
       const circle = new Circle(point, 7);
-      assert.strictEqual(circle.area, 154);
+      assert.closeTo(circle.area, 154, 0.5);
     });
 
     it("should give zero if radius of the circle is zero", function() {
       const point = new Point(0, 0);
       const circle = new Circle(point, 0);
-      assert.strictEqual(circle.area, 0);
+      assert.closeTo(circle.area, 0, 0.5);
     });
   });
 });
