@@ -44,5 +44,13 @@ describe("Circle", function() {
       const circle2 = new Circle(point2, 5);
       assert.isFalse(circle1.isEqualTo(circle2));
     });
+
+    it("should give false if the other circle is not the instance of Circle class", function() {
+      const point1 = new Point(0, 0);
+      const circle1 = new Circle(point1, 3);
+      const point2 = new Point(1, 1);
+      const circle2 = { centre: point2, radius: 3 };
+      assert.isFalse(circle1.isEqualTo(circle2));
+    });
   });
 });
