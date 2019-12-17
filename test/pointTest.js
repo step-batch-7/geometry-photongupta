@@ -66,8 +66,8 @@ describe("Point", function() {
 
   describe("findDistanceTo", function() {
     it("should give the distance between given points", function() {
-      const point1 = new Point(5, 5);
-      const point2 = new Point(2, 1);
+      const point1 = new Point(2, 1);
+      const point2 = new Point(5, 5);
       assert.strictEqual(point1.findDistanceTo(point2), 5);
     });
 
