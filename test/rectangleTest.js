@@ -15,9 +15,16 @@ describe("Rectangle", function() {
   });
 
   describe("area", function() {
-    it("should give the area of given rectangle", function() {
+    it("should give the area of given rectangle when coordinates are positive", function() {
       let endA = new Point(0, 0);
       let endB = new Point(5, 5);
+      let rectangle = new Rectangle(endA, endB);
+      assert.equal(rectangle.area, 25);
+    });
+
+    it("should give the area of given rectangle when coordinates are negative", function() {
+      let endA = new Point(0, 0);
+      let endB = new Point(-5, -5);
       let rectangle = new Rectangle(endA, endB);
       assert.equal(rectangle.area, 25);
     });
