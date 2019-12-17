@@ -13,4 +13,13 @@ describe("Rectangle", function() {
       assert.strictEqual(rectangle.toString(), expected);
     });
   });
+
+  describe("area", function() {
+    it("should give the area of given rectangle", function() {
+      let endA = new Point(0, 0);
+      let endB = new Point(5, 5);
+      let rectangle = new Rectangle(endA, endB);
+      assert.equal(rectangle.area, 25);
+    });
+  });
 });
