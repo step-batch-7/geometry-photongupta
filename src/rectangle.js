@@ -1,9 +1,9 @@
 const Point = require("./point.js");
 const Line = require("./line.js");
 class Rectangle {
-  constructor(endA, endB) {
-    this.endA = new Point(endA.x, endA.y);
-    this.endC = new Point(endB.x, endB.y);
+  constructor(start, end) {
+    this.endA = new Point(start.x, start.y);
+    this.endC = new Point(end.x, end.y);
   }
 
   toString() {
@@ -45,6 +45,14 @@ class Rectangle {
     const CD = new Line(this.endC, this.otherDiagonal.endD);
     const DA = new Line(this.otherDiagonal.endD, this.endA);
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
+  }
+
+  covers(point) {
+    const [xMin, xMax] = [this.endA.x, this.endC.x].sort((x, y) => x - y);
+    const [yMin, yMax] = [this.endA.y, this.endC.y].sort((x, y) => x - y);
+    return (
+      point.x >= xMin && point.x <= xMax && point.y >= yMin && point.y <= yMax
+    );
   }
 }
 

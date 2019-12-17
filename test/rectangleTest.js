@@ -78,4 +78,18 @@ describe("Rectangle", function() {
       assert.isFalse(rectangle.hasPoint(point));
     });
   });
+
+  describe("covers", function() {
+    it("should validate if the given point lies inside the circle", function() {
+      let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      let point = new Point(2, 2);
+      assert.isTrue(rectangle.covers(point));
+    });
+
+    it("should not  validate if the given point lies outside of the circle", function() {
+      let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      let point = new Point(6, 6);
+      assert.isFalse(rectangle.covers(point));
+    });
+  });
 });
