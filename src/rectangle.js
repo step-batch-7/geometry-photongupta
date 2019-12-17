@@ -34,7 +34,7 @@ class Rectangle {
     return 2 * (this.length + this.width);
   }
 
-  isEqual(other) {
+  isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
     return this.endA.isEqualTo(other.endA) && this.endC.isEqualTo(other.endC);
   }
