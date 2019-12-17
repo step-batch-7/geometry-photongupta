@@ -1,5 +1,5 @@
 const Point = require("./point.js");
-
+const Line = require("./line.js");
 class Rectangle {
   #endB;
   #endD;
@@ -40,6 +40,14 @@ class Rectangle {
       (other.endA.isEqualTo(this.#endB) && other.endC.isEqualTo(this.#endD)) ||
       (other.endA.isEqualTo(this.#endD) && other.endC.isEqualTo(this.#endB))
     );
+  }
+
+  hasPoint(point) {
+    const AB = new Line(this.endA, this.#endB);
+    const BC = new Line(this.#endB, this.endC);
+    const CD = new Line(this.endC, this.#endD);
+    const DA = new Line(this.#endD, this.endA);
+    return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
   }
 }
 

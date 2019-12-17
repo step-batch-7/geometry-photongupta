@@ -76,4 +76,18 @@ describe("Rectangle", function() {
       assert.isFalse(rectangle1.isEqual(rectangle2));
     });
   });
+
+  describe("hasPoint", function() {
+    it(" should validate if the given point lies on the one of the sides of the rectangle", function() {
+      let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      let point = new Point(0, 0);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+
+    it(" should  not validate if the given point is not lies on the perimeter of the rectangle", function() {
+      let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      let point = new Point(6, 6);
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+  });
 });
