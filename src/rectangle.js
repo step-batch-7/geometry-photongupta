@@ -1,8 +1,12 @@
 const Point = require("./point.js");
 
-const isCoordinateInRange = function(coordinate, coordinateOfEnds) {
+const isInRange = function(coordinate, coordinateOfEnds) {
   const [minLimit, maxLimit] = coordinateOfEnds.sort((x, y) => x - y);
   return coordinate >= minLimit && coordinate <= maxLimit;
+};
+
+const hasSameCoordinate = function(coordinate, a, b) {
+  return coordinate == a || coordinate == b;
 };
 
 const getLengthAndWidth = function(end1, end2) {
@@ -39,18 +43,19 @@ class Rectangle {
   }
 
   hasPoint(point) {
-    return (
-      ((point.x == this.endC.x || point.x == this.endA.x) &&
-        isCoordinateInRange(point.y, [this.endA.y, this.endC.y])) ||
-      ((point.y == this.endC.y || point.y == this.endA.y) &&
-        isCoordinateInRange(point.x, [this.endA.x, this.endC.x]))
-    );
+    const hasPointOnX =
+      hasSameCoordinate(point.y, this.endA.y, this.endC.y) &&
+      isInRange(point.x, [this.endA.x, this.endC.x]);
+    const hasPointOnY =
+      hasSameCoordinate(point.x, this.endA.x, this.endC.x) &&
+      isInRange(point.y, [this.endA.y, this.endC.y]);
+    return hasPointOnX || hasPointOnY;
   }
 
   covers(point) {
     return (
-      isCoordinateInRange(point.x, [this.endA.x, this.endC.x]) &&
-      isCoordinateInRange(point.y, [this.endA.y, this.endC.y])
+      isInRange(point.x, [this.endA.x, this.endC.x]) &&
+      isInRange(point.y, [this.endA.y, this.endC.y])
     );
   }
 }
