@@ -1,5 +1,4 @@
 const assert = require("chai").assert;
-const Line = require("../src/line.js");
 const Point = require("../src/point.js");
 const Rectangle = require("../src/rectangle.js");
 
@@ -27,6 +26,22 @@ describe("Rectangle", function() {
       let endB = new Point(-5, -5);
       let rectangle = new Rectangle(endA, endB);
       assert.equal(rectangle.area, 25);
+    });
+  });
+
+  describe("perimeter", function() {
+    it("should give the perimeter of given rectangle if the coordinates are positive", function() {
+      let endA = new Point(0, 0);
+      let endB = new Point(5, 4);
+      let rectangle = new Rectangle(endA, endB);
+      assert.equal(rectangle.perimeter, 18);
+    });
+
+    it("should give the perimeter of given rectangle if the coordinates are negative", function() {
+      let endA = new Point(0, 0);
+      let endB = new Point(-5, 0);
+      let rectangle = new Rectangle(endA, endB);
+      assert.equal(rectangle.perimeter, 10);
     });
   });
 });
