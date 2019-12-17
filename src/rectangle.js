@@ -31,6 +31,14 @@ class Rectangle {
   get perimeter() {
     return 2 * (this.length + this.width);
   }
+
+  isEqual(other) {
+    if (!(other instanceof Rectangle)) return false;
+    return (
+      (this.endA.isEqualTo(other.endA) && this.endC.isEqualTo(other.endC)) ||
+      (this.endA.isEqualTo(other.endC) && this.endC.isEqualTo(other.endA))
+    );
+  }
 }
 
 module.exports = Rectangle;
