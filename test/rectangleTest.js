@@ -22,8 +22,8 @@ describe("Rectangle", function() {
     });
 
     it("should give the area of given rectangle when coordinates are negative", function() {
-      let endA = new Point(1, 1);
-      let endB = new Point(5, 5);
+      let endA = new Point(-1, -1);
+      let endB = new Point(-5, -5);
       let rectangle = new Rectangle(endA, endB);
       assert.equal(rectangle.area, 16);
     });
@@ -38,8 +38,8 @@ describe("Rectangle", function() {
     });
 
     it("should give the perimeter of given rectangle if the coordinates are negative", function() {
-      let endA = new Point(1, 1);
-      let endB = new Point(1, 1);
+      let endA = new Point(-1, -1);
+      let endB = new Point(-1, -1);
       let rectangle = new Rectangle(endA, endB);
       assert.equal(rectangle.perimeter, 0);
     });
@@ -67,8 +67,8 @@ describe("Rectangle", function() {
 
   describe("hasPoint", function() {
     it(" should validate if the given point lies on the one of the sides of the rectangle", function() {
-      let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
-      let point = new Point(0, 0);
+      let rectangle = new Rectangle({ x: 1, y: 13 }, { x: 33, y: 5 });
+      let point = new Point(16, 13);
       assert.isTrue(rectangle.hasPoint(point));
     });
 

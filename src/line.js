@@ -1,10 +1,8 @@
 const Point = require("../src/point.js");
 
 const isCoordinateOnTheLine = function(coordinate, coordinateOfEnds) {
-  const [coordinateOfEnd1, coordinateOfEnd2] = coordinateOfEnds.sort(
-    (x, y) => x - y
-  );
-  return coordinate >= coordinateOfEnd1 && coordinate <= coordinateOfEnd2;
+  const [minLimit, maxLimit] = coordinateOfEnds.sort((x, y) => x - y);
+  return coordinate >= minLimit && coordinate <= maxLimit;
 };
 
 const arePointsCollinear = function(point1, point2, point3) {

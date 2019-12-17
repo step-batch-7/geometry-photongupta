@@ -1,10 +1,8 @@
 const Point = require("./point.js");
 
 const isCoordinateInRange = function(coordinate, coordinateOfEnds) {
-  const [coordinateOfEnd1, coordinateOfEnd2] = coordinateOfEnds.sort(
-    (x, y) => x - y
-  );
-  return coordinate >= coordinateOfEnd1 && coordinate <= coordinateOfEnd2;
+  const [minLimit, maxLimit] = coordinateOfEnds.sort((x, y) => x - y);
+  return coordinate >= minLimit && coordinate <= maxLimit;
 };
 
 class Rectangle {
@@ -20,19 +18,19 @@ class Rectangle {
   }
 
   get length() {
-    return this.endA.y - this.endC.y;
+    return Math.abs(this.endA.y - this.endC.y);
   }
 
   get width() {
-    return this.endA.x - this.endC.x;
+    return Math.abs(this.endA.x - this.endC.x);
   }
 
   get area() {
-    return Math.abs(this.length) * Math.abs(this.width);
+    return this.length * this.width;
   }
 
   get perimeter() {
-    return 2 * (Math.abs(this.length) + Math.abs(this.width));
+    return 2 * (this.length + this.width);
   }
 
   isEqualTo(other) {
@@ -44,7 +42,7 @@ class Rectangle {
     return (
       ((point.x == this.endC.x || point.x == this.endA.x) &&
         isCoordinateInRange(point.y, [this.endA.y, this.endC.y])) ||
-      ((point.y == this.endC.y || point.x == this.endA.y) &&
+      ((point.y == this.endC.y || point.y == this.endA.y) &&
         isCoordinateInRange(point.x, [this.endA.x, this.endC.x]))
     );
   }
