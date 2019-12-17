@@ -104,4 +104,13 @@ describe("Circle", function() {
       assert.isFalse(circle.hasPoint(point1));
     });
   });
+
+  describe("moveTo", function() {
+    it("should create a new circle of given center having same radius", function() {
+      const point = new Point(0, 0);
+      const point1 = new Point(1, 1);
+      const circle = new Circle(point, 5);
+      assert.deepStrictEqual(circle.moveTo(point1), new Circle(point1, 5));
+    });
+  });
 });

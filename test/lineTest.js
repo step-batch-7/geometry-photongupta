@@ -88,7 +88,7 @@ describe("Line", function() {
     });
 
     it("should give infinity if line is parallel to y axis", function() {
-      const line = new Line({ x: 3, y: -4 }, { x: 3, y: 8 });
+      const line = new Line({ x: 3, y: 9 }, { x: 3, y: 8 });
       assert.strictEqual(line.slope, Infinity);
     });
 
