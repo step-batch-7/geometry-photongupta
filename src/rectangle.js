@@ -5,6 +5,12 @@ const isCoordinateInRange = function(coordinate, coordinateOfEnds) {
   return coordinate >= minLimit && coordinate <= maxLimit;
 };
 
+const getLengthAndWidth = function(end1, end2) {
+  const length = Math.abs(end1.y - end2.y);
+  const width = Math.abs(end1.x - end2.x);
+  return [length, width];
+};
+
 class Rectangle {
   constructor(start, end) {
     this.endA = new Point(start.x, start.y);
@@ -17,20 +23,14 @@ class Rectangle {
     return `[Rectangle ${endA} to ${endC}]`;
   }
 
-  get length() {
-    return Math.abs(this.endA.y - this.endC.y);
-  }
-
-  get width() {
-    return Math.abs(this.endA.x - this.endC.x);
-  }
-
   get area() {
-    return this.length * this.width;
+    const [length, width] = getLengthAndWidth(this.endA, this.endC);
+    return length * width;
   }
 
   get perimeter() {
-    return 2 * (this.length + this.width);
+    const [length, width] = getLengthAndWidth(this.endA, this.endC);
+    return 2 * (length + width);
   }
 
   isEqualTo(other) {
