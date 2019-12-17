@@ -1,13 +1,9 @@
 const Point = require("./point.js");
 const Line = require("./line.js");
 class Rectangle {
-  #endB;
-  #endD;
   constructor(endA, endB) {
     this.endA = new Point(endA.x, endA.y);
     this.endC = new Point(endB.x, endB.y);
-    this.#endB = new Point(endB.x, endA.y);
-    this.#endD = new Point(endA.x, endB.y);
   }
 
   toString() {
@@ -16,12 +12,18 @@ class Rectangle {
     return `[Rectangle ${endA} to ${endC}]`;
   }
 
+  get otherDiagonal() {
+    const endB = new Point(this.endC.x, this.endA.y);
+    const endD = new Point(this.endA.x, this.endC.y);
+    return { endB, endD };
+  }
+
   get length() {
-    return this.endA.findDistanceTo(this.#endB);
+    return this.endA.findDistanceTo(this.otherDiagonal.endB);
   }
 
   get width() {
-    return this.endC.findDistanceTo(this.#endB);
+    return this.endC.findDistanceTo(this.otherDiagonal.endB);
   }
 
   get area() {
@@ -38,10 +40,10 @@ class Rectangle {
   }
 
   hasPoint(point) {
-    const AB = new Line(this.endA, this.#endB);
-    const BC = new Line(this.#endB, this.endC);
-    const CD = new Line(this.endC, this.#endD);
-    const DA = new Line(this.#endD, this.endA);
+    const AB = new Line(this.endA, this.otherDiagonal.endB);
+    const BC = new Line(this.otherDiagonal.endB, this.endC);
+    const CD = new Line(this.endC, this.otherDiagonal.endD);
+    const DA = new Line(this.otherDiagonal.endD, this.endA);
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
   }
 }

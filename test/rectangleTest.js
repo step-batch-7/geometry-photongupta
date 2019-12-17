@@ -57,6 +57,12 @@ describe("Rectangle", function() {
       let rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 2 });
       assert.isFalse(rectangle1.isEqual(rectangle2));
     });
+
+    it("should not validate if given rectangle is not the instance of rectangle", function() {
+      let rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      let rectangle2 = { endA: { x: 1, y: 1 }, endC: { x: 1, y: 2 } };
+      assert.isFalse(rectangle1.isEqual(rectangle2));
+    });
   });
 
   describe("hasPoint", function() {
