@@ -34,12 +34,7 @@ class Rectangle {
 
   isEqual(other) {
     if (!(other instanceof Rectangle)) return false;
-    return (
-      (this.endA.isEqualTo(other.endA) && this.endC.isEqualTo(other.endC)) ||
-      (this.endA.isEqualTo(other.endC) && this.endC.isEqualTo(other.endA)) ||
-      (other.endA.isEqualTo(this.#endB) && other.endC.isEqualTo(this.#endD)) ||
-      (other.endA.isEqualTo(this.#endD) && other.endC.isEqualTo(this.#endB))
-    );
+    return this.endA.isEqualTo(other.endA) && this.endC.isEqualTo(other.endC);
   }
 
   hasPoint(point) {

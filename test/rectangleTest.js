@@ -52,24 +52,6 @@ describe("Rectangle", function() {
       assert.isTrue(rectangle1.isEqual(rectangle2));
     });
 
-    it("should validate if coordinates of diagonals of rectangles are swapped", function() {
-      let rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
-      let rectangle2 = new Rectangle({ x: 5, y: 4 }, { x: 0, y: 0 });
-      assert.isTrue(rectangle1.isEqual(rectangle2));
-    });
-
-    it("should validate if two rectangles have same coordinate", function() {
-      let rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
-      let rectangle2 = new Rectangle({ x: 0, y: 4 }, { x: 5, y: 0 });
-      assert.isTrue(rectangle1.isEqual(rectangle2));
-    });
-
-    it("should validate if coordinates of diagonals of rectangles are swapped", function() {
-      let rectangle1 = new Rectangle({ x: 0, y: 4 }, { x: 5, y: 0 });
-      let rectangle2 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
-      assert.isTrue(rectangle1.isEqual(rectangle2));
-    });
-
     it("should not validate if two rectangles are different", function() {
       let rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
       let rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 2 });
