@@ -119,4 +119,27 @@ describe("Circle", function() {
       assert.isNull(circle.moveTo(point1));
     });
   });
+
+  describe("covers", function() {
+    it("should validate if the given point is inside the circle", function() {
+      const point = new Point(0, 0);
+      const point1 = { x: 2, y: 2 };
+      const circle = new Circle(point1, 5);
+      assert.isTrue(circle.covers(point));
+    });
+
+    it("should  not validate if the given point is inside the circle", function() {
+      const point1 = new Point(0, 0);
+      const point = { x: 0, y: 6 };
+      const circle = new Circle(point1, 5);
+      assert.isFalse(circle.covers(point));
+    });
+
+    it("should give false if the given point is not the instance of Point class", function() {
+      const point1 = new Point(0, 0);
+      const point = { x: 0, y: 2 };
+      const circle = new Circle(point1, 5);
+      assert.isFalse(circle.covers(point));
+    });
+  });
 });
