@@ -6,9 +6,9 @@ const isCoordinateOnTheLine = function(coordinate, coordinateOfEnds) {
 };
 
 const arePointsCollinear = function(point1, point2, point3) {
-  const line1 = new Line(point1, point2);
-  const line2 = new Line(point2, point3);
-  return line1.slope == line2.slope;
+  let [x1, x2, x3] = [point1.x, point2.x, point3.x];
+  let [y1, y2, y3] = [point1.y, point2.y, point3.y];
+  return (1 / 2) * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) == 0;
 };
 
 class Line {
