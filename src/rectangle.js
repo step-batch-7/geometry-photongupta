@@ -1,5 +1,12 @@
 const Point = require("./point.js");
-const Line = require("./line.js");
+
+const isCoordinateInRange = function(coordinate, coordinateOfEnds) {
+  const [coordinateOfEnd1, coordinateOfEnd2] = coordinateOfEnds.sort(
+    (x, y) => x - y
+  );
+  return coordinate >= coordinateOfEnd1 && coordinate <= coordinateOfEnd2;
+};
+
 class Rectangle {
   constructor(start, end) {
     this.endA = new Point(start.x, start.y);
@@ -12,26 +19,20 @@ class Rectangle {
     return `[Rectangle ${endA} to ${endC}]`;
   }
 
-  get otherDiagonal() {
-    const endB = new Point(this.endC.x, this.endA.y);
-    const endD = new Point(this.endA.x, this.endC.y);
-    return { endB, endD };
-  }
-
   get length() {
-    return this.endA.findDistanceTo(this.otherDiagonal.endB);
+    return this.endA.y - this.endC.y;
   }
 
   get width() {
-    return this.endC.findDistanceTo(this.otherDiagonal.endB);
+    return this.endA.x - this.endC.x;
   }
 
   get area() {
-    return this.length * this.width;
+    return Math.abs(this.length) * Math.abs(this.width);
   }
 
   get perimeter() {
-    return 2 * (this.length + this.width);
+    return 2 * (Math.abs(this.length) + Math.abs(this.width));
   }
 
   isEqualTo(other) {
@@ -40,18 +41,18 @@ class Rectangle {
   }
 
   hasPoint(point) {
-    const AB = new Line(this.endA, this.otherDiagonal.endB);
-    const BC = new Line(this.otherDiagonal.endB, this.endC);
-    const CD = new Line(this.endC, this.otherDiagonal.endD);
-    const DA = new Line(this.otherDiagonal.endD, this.endA);
-    return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
+    return (
+      ((point.x == this.endC.x || point.x == this.endA.x) &&
+        isCoordinateInRange(point.y, [this.endA.y, this.endC.y])) ||
+      ((point.y == this.endC.y || point.x == this.endA.y) &&
+        isCoordinateInRange(point.x, [this.endA.x, this.endC.x]))
+    );
   }
 
   covers(point) {
-    const [xMin, xMax] = [this.endA.x, this.endC.x].sort((x, y) => x - y);
-    const [yMin, yMax] = [this.endA.y, this.endC.y].sort((x, y) => x - y);
     return (
-      point.x >= xMin && point.x <= xMax && point.y >= yMin && point.y <= yMax
+      isCoordinateInRange(point.x, [this.endA.x, this.endC.x]) &&
+      isCoordinateInRange(point.y, [this.endA.y, this.endC.y])
     );
   }
 }

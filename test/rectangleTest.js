@@ -15,33 +15,33 @@ describe("Rectangle", function() {
 
   describe("area", function() {
     it("should give the area of given rectangle when coordinates are positive", function() {
-      let endA = new Point(0, 0);
-      let endB = new Point(5, 5);
+      let endA = new Point(8, 10);
+      let endB = new Point(22, 5);
       let rectangle = new Rectangle(endA, endB);
-      assert.equal(rectangle.area, 25);
+      assert.equal(rectangle.area, 70);
     });
 
     it("should give the area of given rectangle when coordinates are negative", function() {
-      let endA = new Point(0, 0);
-      let endB = new Point(-5, -5);
+      let endA = new Point(1, 1);
+      let endB = new Point(5, 5);
       let rectangle = new Rectangle(endA, endB);
-      assert.equal(rectangle.area, 25);
+      assert.equal(rectangle.area, 16);
     });
   });
 
   describe("perimeter", function() {
     it("should give the perimeter of given rectangle if the coordinates are positive", function() {
-      let endA = new Point(0, 0);
-      let endB = new Point(5, 4);
+      let endA = new Point(8, 5);
+      let endB = new Point(22, 5);
       let rectangle = new Rectangle(endA, endB);
-      assert.equal(rectangle.perimeter, 18);
+      assert.equal(rectangle.perimeter, 28);
     });
 
     it("should give the perimeter of given rectangle if the coordinates are negative", function() {
-      let endA = new Point(0, 0);
-      let endB = new Point(-5, 0);
+      let endA = new Point(1, 1);
+      let endB = new Point(1, 1);
       let rectangle = new Rectangle(endA, endB);
-      assert.equal(rectangle.perimeter, 10);
+      assert.equal(rectangle.perimeter, 0);
     });
   });
 
