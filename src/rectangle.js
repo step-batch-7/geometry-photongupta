@@ -17,47 +17,50 @@ const getLengthAndWidth = function(end1, end2) {
 
 class Rectangle {
   constructor(start, end) {
-    this.endA = new Point(start.x, start.y);
-    this.endC = new Point(end.x, end.y);
+    this.vertexA = new Point(start.x, start.y);
+    this.vertexC = new Point(end.x, end.y);
   }
 
   toString() {
-    const endA = `(${this.endA.x},${this.endA.y})`;
-    const endC = `(${this.endC.x},${this.endC.y})`;
-    return `[Rectangle ${endA} to ${endC}]`;
+    const vertexA = `(${this.vertexA.x},${this.vertexA.y})`;
+    const vertexC = `(${this.vertexC.x},${this.vertexC.y})`;
+    return `[Rectangle ${vertexA} to ${vertexC}]`;
   }
 
   get area() {
-    const [length, width] = getLengthAndWidth(this.endA, this.endC);
+    const [length, width] = getLengthAndWidth(this.vertexA, this.vertexC);
     return length * width;
   }
 
   get perimeter() {
-    const [length, width] = getLengthAndWidth(this.endA, this.endC);
+    const [length, width] = getLengthAndWidth(this.vertexA, this.vertexC);
     return 2 * (length + width);
   }
 
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
-    return this.endA.isEqualTo(other.endA) && this.endC.isEqualTo(other.endC);
+    return (
+      this.vertexA.isEqualTo(other.vertexA) &&
+      this.vertexC.isEqualTo(other.vertexC)
+    );
   }
 
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
     const hasPointOnX =
-      hasSameCoordinate(point.y, this.endA.y, this.endC.y) &&
-      isInRange(point.x, [this.endA.x, this.endC.x]);
+      hasSameCoordinate(point.y, this.vertexA.y, this.vertexC.y) &&
+      isInRange(point.x, [this.vertexA.x, this.vertexC.x]);
     const hasPointOnY =
-      hasSameCoordinate(point.x, this.endA.x, this.endC.x) &&
-      isInRange(point.y, [this.endA.y, this.endC.y]);
+      hasSameCoordinate(point.x, this.vertexA.x, this.vertexC.x) &&
+      isInRange(point.y, [this.vertexA.y, this.vertexC.y]);
     return hasPointOnX || hasPointOnY;
   }
 
   covers(point) {
     if (!(point instanceof Point)) return false;
     return (
-      isInRange(point.x, [this.endA.x, this.endC.x]) &&
-      isInRange(point.y, [this.endA.y, this.endC.y])
+      isInRange(point.x, [this.vertexA.x, this.vertexC.x]) &&
+      isInRange(point.y, [this.vertexA.y, this.vertexC.y])
     );
   }
 }
