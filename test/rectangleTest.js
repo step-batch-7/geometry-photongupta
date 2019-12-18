@@ -77,6 +77,12 @@ describe("Rectangle", function() {
       let point = new Point(6, 6);
       assert.isFalse(rectangle.hasPoint(point));
     });
+
+    it(" should  not validate if the point is not the instance of point", function() {
+      let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      let point = { x: 6, y: 6 };
+      assert.isFalse(rectangle.hasPoint(point));
+    });
   });
 
   describe("covers", function() {
@@ -84,6 +90,12 @@ describe("Rectangle", function() {
       let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
       let point = new Point(2, 2);
       assert.isTrue(rectangle.covers(point));
+    });
+
+    it("should not  validate if the given point is not the instance of point", function() {
+      let rectangle = new Rectangle({ x: 0, y: 0 }, { x: 5, y: 4 });
+      let point = { x: 5, y: 5 };
+      assert.isFalse(rectangle.covers(point));
     });
 
     it("should not  validate if the given point lies outside of the circle", function() {

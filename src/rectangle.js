@@ -43,6 +43,7 @@ class Rectangle {
   }
 
   hasPoint(point) {
+    if (!(point instanceof Point)) return false;
     const hasPointOnX =
       hasSameCoordinate(point.y, this.endA.y, this.endC.y) &&
       isInRange(point.x, [this.endA.x, this.endC.x]);
@@ -53,6 +54,7 @@ class Rectangle {
   }
 
   covers(point) {
+    if (!(point instanceof Point)) return false;
     return (
       isInRange(point.x, [this.endA.x, this.endC.x]) &&
       isInRange(point.y, [this.endA.y, this.endC.y])
